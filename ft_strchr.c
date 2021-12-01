@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zhaddoum <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/30 18:59:48 by zhaddoum          #+#    #+#             */
-/*   Updated: 2021/11/30 19:00:27 by zhaddoum         ###   ########.fr       */
+/*   Created: 2021/11/17 16:01:45 by zhaddoum          #+#    #+#             */
+/*   Updated: 2021/11/17 16:10:35 by zhaddoum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-int ft_lstsize(t_list *lst)
+char	*ft_strchr(const char *s, int c)
 {
-    t_list *ptr;
-    int count;
+	char	*str;
+	char	k;
 
-    if (!lst)
-        return (0);
-    ptr = lst;
-    count = 0;
-    while (ptr != NULL)
-    {
-        count++;
-        ptr = ptr -> next;
-    }
-    return (count);
+	k = (char) c;
+	str = (char *) s;
+	while (*str)
+	{
+		if (*str == k)
+			return (str);
+		else
+			str++;
+	}
+	if (*str == k)
+		return (str);
+	else
+		return (NULL);
 }

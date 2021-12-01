@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zhaddoum <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/30 18:59:48 by zhaddoum          #+#    #+#             */
-/*   Updated: 2021/11/30 19:00:27 by zhaddoum         ###   ########.fr       */
+/*   Created: 2021/11/17 17:23:11 by zhaddoum          #+#    #+#             */
+/*   Updated: 2021/11/23 10:57:20 by zhaddoum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_lstsize(t_list *lst)
+char	*ft_strnstr(const char *str, const char *to_find, size_t n)
 {
-    t_list *ptr;
-    int count;
+	size_t	i;
+	size_t	cout;
+	size_t	len;
+	char	*s;
 
-    if (!lst)
-        return (0);
-    ptr = lst;
-    count = 0;
-    while (ptr != NULL)
-    {
-        count++;
-        ptr = ptr -> next;
-    }
-    return (count);
+	s = (char *) str;
+	i = 0;
+	cout = 0;
+	len = ft_strlen(to_find);
+	if (s[i] == '\0' && to_find[i] == '\0')
+		return (&s[i]);
+	while (s[i])
+	{
+		while (s[i + cout] == to_find[cout] && to_find[cout] && (i + cout) < n)
+			cout++;
+		if (cout == len)
+			return (&s[i]);
+		cout = 0;
+		i++;
+	}
+	return (NULL);
 }

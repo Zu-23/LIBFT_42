@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zhaddoum <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/30 18:59:48 by zhaddoum          #+#    #+#             */
-/*   Updated: 2021/11/30 19:00:27 by zhaddoum         ###   ########.fr       */
+/*   Created: 2021/11/09 14:49:35 by zhaddoum          #+#    #+#             */
+/*   Updated: 2021/11/09 14:55:00 by zhaddoum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include"libft.h"
 
-#include "libft.h"
-
-int ft_lstsize(t_list *lst)
+void	*ft_memset(void *str, int c, size_t n)
 {
-    t_list *ptr;
-    int count;
+	unsigned int	i;
+	unsigned char	val;
 
-    if (!lst)
-        return (0);
-    ptr = lst;
-    count = 0;
-    while (ptr != NULL)
-    {
-        count++;
-        ptr = ptr -> next;
-    }
-    return (count);
+	val = (unsigned char)c;
+	if (n == 0)
+		return (str);
+	i = 0;
+	while (i < n)
+	{
+		*((char *)str + i) = val;
+		i++;
+	}
+	return (str);
 }

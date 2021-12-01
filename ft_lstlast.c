@@ -1,10 +1,16 @@
-#include<stdio.h>
-#include<stdlib.h>
-typedef struct s_list
-{
-    void    *content;
-    struct s_list   *next;
-}t_list;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zhaddoum <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/30 19:00:41 by zhaddoum          #+#    #+#             */
+/*   Updated: 2021/11/30 19:00:50 by zhaddoum         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
 
 t_list  *ft_lstlast(t_list *lst)
 {
@@ -12,10 +18,12 @@ t_list  *ft_lstlast(t_list *lst)
 
     ptr = lst;
     if (!lst)
-        return (0);
+        return (NULL);
     while (ptr != NULL)
     {
-        ptr = ptr -> next;
+        if (ptr->next == NULL)
+            return (ptr);
+        ptr = ptr->next;
     }
     return (ptr);
 }
