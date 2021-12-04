@@ -6,27 +6,28 @@
 /*   By: zhaddoum <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 12:04:50 by zhaddoum          #+#    #+#             */
-/*   Updated: 2021/11/23 12:06:08 by zhaddoum         ###   ########.fr       */
+/*   Updated: 2021/12/04 17:26:22 by zhaddoum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
 static int	cwords(const char *str, char c)
-{	
-	int words;
-	int isC;
+{
+	int	words;
+	int	isc;
 
 	words = 1;
-	isC = 0;
-	if (str[0] == c) words--;
+	isc = 0;
+	if (str[0] == c)
+		words--;
 	while (*str)
 	{
 		if (*str == c)
-			isC = 1;
-		else if (isC)
+			isc = 1;
+		else if (isc)
 		{
-			isC = 0;
+			isc = 0;
 			words++;
 		}
 		str++;
@@ -47,11 +48,34 @@ static char	*split_word(const char *str, int start, int finish)
 	return (word);
 }
 
-char	**ft_split(char const *s, char c)
+static char	**split2(char **split, char const *s, char c)
 {
 	size_t	i;
 	size_t	j;
-	int		index;
+	int		ndx;
+	size_t	len;
+
+	i = 0;
+	j = 0;
+	len = ft_strlen(s);
+	ndx = -1;
+	while (i <= len)
+	{
+		if (s[i] != c && ndx < 0)
+			ndx = i;
+		else if ((s[i] == c || i == len) && ndx >= 0)
+		{
+			split[j++] = split_word(s, ndx, i);
+			ndx = -1;
+		}
+		i++;
+	}
+	split[j] = 0;
+	return (split);
+}
+
+char	**ft_split(char const *s, char c)
+{
 	char	**split;
 
 	if (!s)
@@ -59,20 +83,5 @@ char	**ft_split(char const *s, char c)
 	split = malloc((cwords(s, c) + 1) * sizeof(char *));
 	if (!split)
 		return (NULL);
-	i = 0;
-	j = 0;
-	index = -1;
-	while (i <= ft_strlen(s))
-	{
-		if (s[i] != c && index < 0)
-			index = i;
-		else if ((s[i] == c || i == ft_strlen(s)) && index >= 0)
-		{
-			split[j++] = split_word(s, index, i);
-			index = -1;
-		}
-		i++;
-	}
-	split[j] = 0;
-	return (split);
+	return (split2(split, s, c));
 }
