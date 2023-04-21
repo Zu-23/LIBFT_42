@@ -33,6 +33,9 @@ SRC= ft_isalpha.c \
 	ft_strrev.c \
 	ft_strmapi.c \
 	ft_striteri.c \
+	ft_strtok.c \
+	ft_strstr.c \
+	ft_strcpy.c \
 
 CFLAGS = -Wall -Wextra -Werror
 

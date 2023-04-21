@@ -7,10 +7,13 @@
 
 typedef struct s_list
 {
-    void    *content;
-    struct s_list   *next;
+	void    *content;
+	struct s_list   *next;
 }   t_list;
 
+char	    *ft_strtok(char *str, char *delim);
+char		*ft_strstr(const char *haystack, const char *needle);
+char		*ft_strcpy(char *dest, const char *src);
 int         ft_isalpha(int c);
 int         ft_isdigit(int c);
 int         ft_isalnum(int c);
